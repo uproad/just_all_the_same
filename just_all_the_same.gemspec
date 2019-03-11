@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["uproad krowd"]
   spec.email         = ["7349115+uproad@users.noreply.github.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "You get Array#all?([An Immediate Value]) quickly."
+  spec.description   = "use Allay's methods => [all_nil?, all_true?, all_false?, all_sym?(:sym), all_same?([a Fixnum])]"
+  spec.homepage      = "https://github.com/uproad/just_all_the_same"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
