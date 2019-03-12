@@ -3,4 +3,12 @@ require "rspec/core/rake_task"
 
 RSpec::Core::RakeTask.new(:spec)
 
-task :default => :spec
+require "rake/extensiontask"
+
+task :build => :compile
+
+Rake::ExtensionTask.new("just_all_the_same") do |ext|
+  ext.lib_dir = "lib/just_all_the_same"
+end
+
+task :default => [:clobber, :compile, :spec]
