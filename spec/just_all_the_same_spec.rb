@@ -3,7 +3,11 @@ RSpec.describe JustAllTheSame do
     expect(JustAllTheSame::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  describe "all_nil?" do
+    subject { array.all_nil? }
+    context "ALL nil" do
+      let(:array) { [nil, nil, nil] }
+      it { is_expected.to be true }
+    end
   end
 end
