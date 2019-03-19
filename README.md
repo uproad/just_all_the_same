@@ -1,6 +1,6 @@
 # JustAllTheSame
 
-## ***YOU CAN RUN QUICKLY """Array#all?(nil)""".***
+## ***YOU CAN RUN QUICKLY """Array#all?(nil)"""***
 
 ## Installation
 
@@ -28,6 +28,76 @@ ary = [nil, nil, nil]
 
 ary.all_nil? #=> true
 # same ary.all?(nil)
+```
+
+## Algorithm (gem is written by Clang)
+
+1. A long size array.
+
+```ruby
+ary = [nil]*10000
+```
+
+2. Check first item is nil? in Clang.
+
+```ruby
+return false unless ary[0].nil?
+```
+
+3. Split array to half and half.
+
+IMPORTANT!
+
+```ruby
+ forward_ary = ary[0...ary.size/2]
+backward_ary = ary[ary.size/2..ary.size/2*2] # If size is odd, to under even.
+```
+
+4. If odd, check last item is nil.
+
+```ruby
+return false unless ary.size.odd? && ary[-1].nil?
+```
+
+5. Check same forward_ary and backward_ary with C function 'memcmp'.
+
+IMPORTANT!!!
+
+```ruby
+return false if memcmp(forward_ary.ptr, backward_ary.ptr, forward_ary.size)
+```
+
+6. Split forward_ary to half and half.
+
+```ruby
+         ary = forward_ary
+ forward_ary = ary[0...ary.size/2]
+backward_ary = ary[ary.size/2..ary.size/2*2] # If size is odd, to under even.
+```
+
+7. Loop to 4
+
+## Algorithm written by data
+```
+[nil, nil, nil, nil, nil, nil, nil, nil, nil, nil]
+                      split
+
+[nil, nil, nil, nil, nil] [nil, nil, nil, nil, nil]
+                      memcmp
+
+
+[nil, nil, nil, nil, nil]
+       split
+
+[nil, nil] [nil, nil] [nil]
+       memcmp          nil?
+
+
+[nil, nil]
+  split
+
+[nil] [nil]
+  memcmp
 ```
 
 ## Development
