@@ -1,9 +1,7 @@
 require "just_all_the_same/version"
+require "just_all_the_same/just_all_the_same"
 
 module JustAllTheSame
-  class ::Array
-    def all_nil?
-      all?(nil)
-    end
-  end
+  # no ruby code.
+  # only C lang.
 end
