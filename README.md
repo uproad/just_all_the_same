@@ -1,15 +1,13 @@
 # JustAllTheSame
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/just_all_the_same`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+## ***YOU CAN RUN QUICKLY """Array#all?(nil)""".***
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'just_all_the_same'
+gem 'just_all_the_same', github: "uproad/just_all_the_same"
 ```
 
 And then execute:
@@ -18,11 +16,19 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install just_all_the_same
+    $ gem install specific_install
+    $ gem install specific_install git@github.com:uproad/just_all_the_same.git master
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'just_all_the_same'
+
+ary = [nil, nil, nil]
+
+ary.all_nil? #=> true
+# same ary.all?(nil)
+```
 
 ## Development
 
