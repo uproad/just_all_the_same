@@ -35,8 +35,27 @@ all_nil_p(VALUE ary)
   return Qtrue;
 }
 
+static VALUE
+all_nil_p2(VALUE ary)
+{
+  long size = RARRAY_LEN(ary);
+
+  VALUE *forward_p = RARRAY_PTR(ary);
+
+  long i = 0;
+
+  while (i < size)
+  {
+    if (forward_p[i] != Qnil) return Qfalse;
+  }
+
+  return Qtrue;
+}
+
+
 void
 Init_just_all_the_same(void)
 {
   rb_define_method(rb_cArray, "all_nil?", all_nil_p, 0);
+  rb_define_method(rb_cArray, "all_nil2?", all_nil_p2, 0);
 }
