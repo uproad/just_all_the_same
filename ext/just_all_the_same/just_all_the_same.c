@@ -54,8 +54,9 @@ all_nil_p2(VALUE ary)
 }
 
 static VALUE
-all_nil_p3(VALUE ary)
+all_nil_p3(VALUE ary, VALUE switch_size)
 {
+  long switch_point = FIX2LONG(switch_size);
   long size = RARRAY_LEN(ary);
 
   if (size == 0) return Qtrue;
@@ -71,6 +72,7 @@ all_nil_p3(VALUE ary)
 
   while (v >= 1)
   {
+    if (s <= switch_point) break;
     backward_p = forward_p + v;
 
     /* check last of array nil? if size is not odd? */
@@ -80,7 +82,6 @@ all_nil_p3(VALUE ary)
     if (memcmp(forward_p, backward_p, sizeof(VALUE) * v)) return Qfalse;
 
     s = v;
-    if (s <= 800) break;
     v /= 2;
   }
 
@@ -100,5 +101,5 @@ Init_just_all_the_same(void)
 {
   rb_define_method(rb_cArray, "all_nil?", all_nil_p, 0);
   rb_define_method(rb_cArray, "all_nil2?", all_nil_p2, 0);
-  rb_define_method(rb_cArray, "all_nil3?", all_nil_p3, 0);
+  rb_define_method(rb_cArray, "all_nil3?", all_nil_p3, 1);
 }
