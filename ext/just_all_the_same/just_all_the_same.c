@@ -47,6 +47,7 @@ all_nil_p2(VALUE ary)
   while (i < size)
   {
     if (forward_p[i] != Qnil) return Qfalse;
+    i++;
   }
 
   return Qtrue;
