@@ -5,16 +5,18 @@ VALUE rb_mJustAllTheSame;
 static VALUE
 all_nil_p(VALUE ary)
 {
+  long size = RARRAY_LEN(ary);
+
+  if (size == 0) return Qtrue;
+
   VALUE *forward_p = RARRAY_PTR(ary);
 
   if (forward_p[0] != Qnil) return Qfalse;
 
   VALUE *backward_p;
 
-  long size = RARRAY_LEN(ary);
   long s = size;      // size of foward_ary + backward_aray
   long v = size / 2;  // splitting index
-  int cmpresult;
 
   while (v >= 1)
   {
