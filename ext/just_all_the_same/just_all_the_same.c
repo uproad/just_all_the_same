@@ -35,7 +35,7 @@ all_same_p(VALUE ary, VALUE target)
   }
 
   /* liner algorithm */
-  for (long i = 1; i < s; i++) if (forward_p[i] != Qnil) return Qfalse;
+  for (long i = 1; i < s; i++) if (forward_p[i] != target) return Qfalse;
 
   return Qtrue;
 }
