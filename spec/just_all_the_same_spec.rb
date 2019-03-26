@@ -37,8 +37,8 @@ RSpec.describe JustAllTheSame do
         it { is_expected.to be origin }
       end
     end
-    context "ALL nil(100_000_000)" do
-      let(:array) { [nil]*100_000_000 }
+    context "ALL nil(1_000_000)" do
+      let(:array) { [nil]*1_000_000 }
       it { is_expected.to be origin }
     end
 
