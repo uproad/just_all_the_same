@@ -1,6 +1,7 @@
 #include "just_all_the_same.h"
 
 VALUE rb_mJustAllTheSame;
+#define SWITCH_TO_LINER 300
 
 static VALUE
 all_nil_p(VALUE ary)
@@ -18,7 +19,8 @@ all_nil_p(VALUE ary)
   long s = size;      // size of foward_ary + backward_aray
   long v = size / 2;  // splitting index
 
-  while (v >= 1)
+  /* split algorithm */
+  while (v >= SWITCH_TO_LINER / 2)
   {
     backward_p = forward_p + v;
 
@@ -31,6 +33,9 @@ all_nil_p(VALUE ary)
     s = v;
     v /= 2;
   }
+
+  /* liner algorithm */
+  for (long i = 1; i < s; i++) if (forward_p[i] != Qnil) return Qfalse;
 
   return Qtrue;
 }
