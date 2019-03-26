@@ -4,7 +4,7 @@ VALUE rb_mJustAllTheSame;
 #define SWITCH_TO_LINER 300
 
 static VALUE
-all_nil_p(VALUE ary)
+all_same_p(VALUE ary, VALUE target)
 {
   long size = RARRAY_LEN(ary);
 
@@ -12,7 +12,7 @@ all_nil_p(VALUE ary)
 
   VALUE *forward_p = RARRAY_PTR(ary);
 
-  if (forward_p[0] != Qnil) return Qfalse;
+  if (forward_p[0] != target) return Qfalse;
 
   VALUE *backward_p;
 
@@ -25,7 +25,7 @@ all_nil_p(VALUE ary)
     backward_p = forward_p + v;
 
     /* check last of array nil? if size is not odd? */
-    if (s%2 && forward_p[s-1] != Qnil) return Qfalse;
+    if (s%2 && forward_p[s-1] != target) return Qfalse;
 
     /* check quick same back and fowerd */
     if (memcmp(forward_p, backward_p, sizeof(VALUE) * v)) return Qfalse;
@@ -40,8 +40,15 @@ all_nil_p(VALUE ary)
   return Qtrue;
 }
 
+static VALUE
+all_nil_p(VALUE ary)
+{
+  return all_same_p(ary, Qnil);
+}
+
 void
 Init_just_all_the_same(void)
 {
-  rb_define_method(rb_cArray, "all_nil?", all_nil_p, 0);
+  rb_define_method(rb_cArray, "all_nil?" , all_nil_p , 0);
+  rb_define_method(rb_cArray, "all_same?", all_same_p, 1);
 }
