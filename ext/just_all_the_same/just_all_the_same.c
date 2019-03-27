@@ -46,9 +46,23 @@ all_nil_p(VALUE ary)
   return all_same_p(ary, Qnil);
 }
 
+static VALUE
+all_true_p(VALUE ary)
+{
+  return all_same_p(ary, Qtrue);
+}
+
+static VALUE
+all_false_p(VALUE ary)
+{
+  return all_same_p(ary, Qfalse);
+}
+
 void
 Init_just_all_the_same(void)
 {
-  rb_define_method(rb_cArray, "all_nil?" , all_nil_p , 0);
-  rb_define_method(rb_cArray, "all_same?", all_same_p, 1);
+  rb_define_method(rb_cArray, "all_nil?"   , all_nil_p   , 0);
+  rb_define_method(rb_cArray, "all_true?"  , all_true_p  , 0);
+  rb_define_method(rb_cArray, "all_false?" , all_false_p , 0);
+  rb_define_method(rb_cArray, "all_same?"  , all_same_p  , 1);
 }
