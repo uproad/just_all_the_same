@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["7349115+uproad@users.noreply.github.com"]
 
   spec.summary       = "You get Array#all?([An Immediate Value]) quickly."
-  spec.description   = "use Allay's methods => [all_nil?, all_true?, all_false?, all_sym?(:sym), all_same?([a Fixnum])]"
+  spec.description   = "Add class Array's instance methods => [all_nil?, all_true?, all_false?, all_same?(Immidiate Value)]"
   spec.homepage      = "https://github.com/uproad/just_all_the_same"
   spec.license       = "MIT"
 
