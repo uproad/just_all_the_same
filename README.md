@@ -7,7 +7,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'just_all_the_same', github: "uproad/just_all_the_same"
+gem 'just_all_the_same'
 ```
 
 And then execute:
@@ -16,8 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install specific_install
-    $ gem install specific_install git@github.com:uproad/just_all_the_same.git master
+    $ gem install just_all_the_same
 
 ## Usage
 
