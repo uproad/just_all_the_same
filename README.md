@@ -26,7 +26,13 @@ require 'just_all_the_same'
 ary = [nil, nil, nil]
 
 ary.all_nil? #=> true
-# same ary.all?(nil)
+# return same ary.all?(nil) but quickly
+# methods
+#   all_same?(Immidiate Value)
+#     Immidiate Vale -> Integer(1,2,3...), Symbol(:str), true, false, nil
+#   all_nil?
+#   all_true?
+#   all_false?
 ```
 
 ## Algorithm (gem is written by Clang)
